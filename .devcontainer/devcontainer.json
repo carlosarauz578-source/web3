@@ -1,0 +1,1 @@
+{"name":"Aegis-Web3 Core MVP","image":"mcr.microsoft.com/devcontainers/python:1-3.12-bookworm","postCreateCommand":"python -m pip install -e '.[dev]'","forwardPorts":[8000],"portsAttributes":{"8000":{"label":"Aegis local dashboard","onAutoForward":"openBrowser"}}}
