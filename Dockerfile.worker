@@ -1,0 +1,21 @@
+FROM python:3.12-slim
+
+LABEL org.aegis.slither-version="0.11.6" \
+      org.aegis.solc-version="0.8.30"
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    HOME=/tmp
+
+RUN python -m pip install --no-cache-dir --upgrade pip setuptools \
+    && pip install --no-cache-dir slither-analyzer==0.11.6 solc-select==1.2.0 \
+    && HOME=/root solc-select install 0.8.30 \
+    && install -m 0755 /root/.solc-select/artifacts/solc-0.8.30/solc-0.8.30 /tmp/solc-0.8.30 \
+    && pip uninstall -y solc-select \
+    && install -m 0755 /tmp/solc-0.8.30 /usr/local/bin/solc \
+    && rm /tmp/solc-0.8.30 \
+    && mkdir -p /input \
+    && chmod 0555 /input
+
+USER 65534:65534
+ENTRYPOINT ["slither"]
