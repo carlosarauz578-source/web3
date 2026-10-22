@@ -13,6 +13,8 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
+      - run: python -m pip install --upgrade pip setuptools
       - run: python -m pip install -e '.[dev]'
       - run: ruff check app tests
       - run: pytest
+      - run: pip-audit

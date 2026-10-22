@@ -3,7 +3,12 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .venv/
+*.egg-info/
+build/
+dist/
 .env
 aegis.db
+aegis.db-shm
+aegis.db-wal
 evidence/*
 !evidence/.gitkeep
